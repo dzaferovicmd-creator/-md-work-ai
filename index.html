@@ -4,104 +4,260 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d12">
-<title>MD Work AI v0.3</title>
+<title>MD Work AI v0.4</title>
 
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;background:#0b0d12;color:white;
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+margin:0;
+background:#0b0d12;
+color:white;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
-.app{max-width:520px;margin:auto;padding:22px 17px 110px}
-.logo{font-size:28px;font-weight:900}
+.app{
+max-width:520px;
+margin:auto;
+padding:22px 17px 115px;
+}
+.logo{
+font-size:28px;
+font-weight:900;
+}
 .logo span{color:#4285ff}
-.subtitle{color:#8e95a3;margin-top:5px}
-.welcome{font-size:26px;font-weight:800;margin:28px 0 18px}
+.subtitle{
+color:#8e95a3;
+margin-top:5px;
+}
+.welcome{
+font-size:26px;
+font-weight:800;
+margin:28px 0 18px;
+}
 .card{
- background:#151820;border:1px solid #252b36;
- border-radius:20px;padding:17px;margin-bottom:12px;
+background:#151820;
+border:1px solid #252b36;
+border-radius:20px;
+padding:17px;
+margin-bottom:12px;
 }
 .ai{
- background:linear-gradient(145deg,#182743,#101722);
- border-color:#315fa6;text-align:center;
+background:linear-gradient(145deg,#182743,#101722);
+border-color:#315fa6;
+text-align:center;
 }
 .mic{
- width:88px;height:88px;border-radius:50%;border:0;
- background:#3478f6;color:white;font-size:39px;margin:16px auto;
- display:block;box-shadow:0 0 25px #3478f655;
+width:88px;
+height:88px;
+border-radius:50%;
+border:0;
+background:#3478f6;
+color:white;
+font-size:39px;
+margin:16px auto;
+display:block;
+box-shadow:0 0 25px #3478f655;
 }
-.mic.listening{background:#df444c;animation:pulse 1s infinite}
-@keyframes pulse{50%{transform:scale(1.08)}}
-textarea,input{
- width:100%;background:#0c1017;color:white;border:1px solid #303746;
- border-radius:13px;padding:13px;font-size:16px;margin-top:9px;
+.mic.listening{
+background:#df444c;
+animation:pulse 1s infinite;
 }
-textarea{min-height:90px;resize:none}
+@keyframes pulse{
+50%{transform:scale(1.08)}
+}
+textarea,input,select{
+width:100%;
+background:#0c1017;
+color:white;
+border:1px solid #303746;
+border-radius:13px;
+padding:13px;
+font-size:16px;
+margin-top:9px;
+}
+textarea{
+min-height:90px;
+resize:none;
+}
 button{cursor:pointer}
 .primary,.green,.secondary,.danger{
- width:100%;border:0;border-radius:13px;padding:14px;
- color:white;font-weight:800;font-size:15px;margin-top:10px;
+width:100%;
+border:0;
+border-radius:13px;
+padding:14px;
+color:white;
+font-weight:800;
+font-size:15px;
+margin-top:10px;
 }
 .primary{background:#3478f6}
 .green{background:#2ebd6b}
 .secondary{background:#272d38}
 .danger{background:#a9363d}
-.status{font-size:13px;color:#a7adba;min-height:20px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
-.stat{background:#151820;border-radius:18px;padding:16px}
-.label{font-size:11px;color:#8f96a4}
-.number{font-size:23px;font-weight:900;margin-top:6px}
-.section{font-size:20px;font-weight:850;margin:27px 0 12px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.action{
- border:0;background:#151820;color:white;border-radius:17px;
- padding:18px 8px;font-weight:750;font-size:14px;
+.status{
+font-size:13px;
+color:#a7adba;
+min-height:20px;
 }
-.action span{display:block;font-size:26px;margin-bottom:6px}
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin:18px 0;
+}
+.stat{
+background:#151820;
+border-radius:18px;
+padding:16px;
+}
+.label{
+font-size:11px;
+color:#8f96a4;
+}
+.number{
+font-size:23px;
+font-weight:900;
+margin-top:6px;
+}
+.section{
+font-size:20px;
+font-weight:850;
+margin:27px 0 12px;
+}
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+.action{
+border:0;
+background:#151820;
+color:white;
+border-radius:17px;
+padding:18px 8px;
+font-weight:750;
+font-size:14px;
+}
+.action span{
+display:block;
+font-size:26px;
+margin-bottom:6px;
+}
 .row{
- display:flex;justify-content:space-between;gap:15px;
- padding:9px 0;border-bottom:1px solid #292e38;
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:9px 0;
+border-bottom:1px solid #292e38;
 }
 .row:last-child{border:0}
 .row span:first-child{color:#959ca9}
-.total{color:#55dd8b;font-size:20px}
+.total{
+color:#55dd8b;
+font-size:20px;
+}
 .hidden{display:none!important}
-.tabs{display:flex;gap:7px;margin:17px 0;overflow:auto}
-.tab{
- white-space:nowrap;border:1px solid #303746;background:#151820;
- color:#aaa;border-radius:20px;padding:9px 13px;font-weight:700;
-}
-.tab.active{background:#3478f6;color:white;border-color:#3478f6}
+
 .customer,.job,.invoice{
- background:#151820;border-radius:17px;padding:15px;margin-bottom:9px;
- border:1px solid #242a34;
+background:#151820;
+border-radius:17px;
+padding:15px;
+margin-bottom:9px;
+border:1px solid #242a34;
 }
-.item-title{font-weight:850;font-size:16px}
-.item-info{color:#9299a6;font-size:13px;margin-top:5px;line-height:1.45}
+.item-title{
+font-weight:850;
+font-size:16px;
+}
+.item-info{
+color:#9299a6;
+font-size:13px;
+margin-top:5px;
+line-height:1.45;
+}
 .badge{
- display:inline-block;margin-top:7px;padding:5px 9px;border-radius:12px;
- font-size:11px;background:#203628;color:#69df94;
+display:inline-block;
+margin-top:7px;
+padding:5px 9px;
+border-radius:12px;
+font-size:11px;
+background:#203628;
+color:#69df94;
+}
+.badge.open{
+background:#403519;
+color:#ffd56a;
+}
+.badge.paid{
+background:#203628;
+color:#69df94;
 }
 .invoice-paper{
- background:white;color:#111;border-radius:12px;padding:20px;margin-top:12px;
+background:white;
+color:#111;
+border-radius:12px;
+padding:20px;
+margin-top:12px;
 }
-.invoice-paper h2{margin-top:0}
-.invoice-paper .muted{color:#666;font-size:13px}
-.invoice-paper hr{border:0;border-top:1px solid #ddd}
-.invoice-total{font-size:22px;font-weight:900;text-align:right}
+.invoice-paper h2{
+margin-top:0;
+}
+.invoice-paper .muted{
+color:#666;
+font-size:13px;
+}
+.invoice-paper hr{
+border:0;
+border-top:1px solid #ddd;
+}
+.invoice-total{
+font-size:22px;
+font-weight:900;
+text-align:right;
+}
+.checkbox{
+display:flex;
+align-items:center;
+gap:10px;
+margin-top:12px;
+color:#bbb;
+}
+.checkbox input{
+width:auto;
+margin:0;
+}
 .nav{
- position:fixed;bottom:0;left:50%;transform:translateX(-50%);
- max-width:520px;width:100%;display:grid;grid-template-columns:repeat(4,1fr);
- background:#101319;border-top:1px solid #272c35;
- padding:9px 3px calc(17px + env(safe-area-inset-bottom));z-index:20;
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+max-width:520px;
+width:100%;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+background:#101319;
+border-top:1px solid #272c35;
+padding:9px 3px calc(17px + env(safe-area-inset-bottom));
+z-index:20;
 }
-.nav button{border:0;background:none;color:#888;font-size:10px}
-.nav span{display:block;font-size:22px;margin-bottom:3px}
-.nav button.active{color:#4c8dff}
+.nav button{
+border:0;
+background:none;
+color:#888;
+font-size:10px;
+}
+.nav span{
+display:block;
+font-size:22px;
+margin-bottom:3px;
+}
+.nav button.active{
+color:#4c8dff;
+}
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
 <div class="logo">MD WORK <span>AI</span></div>
@@ -112,44 +268,123 @@ button{cursor:pointer}
 <div class="welcome">Hallo Marjan 👋</div>
 
 <div class="card ai">
- <h2>Was hast du heute gemacht?</h2>
- <button class="mic" id="micButton">🎙️</button>
- <div class="status" id="status">Tippe auf das Mikrofon und sprich.</div>
 
- <textarea id="speechText"
- placeholder="Beispiel: Heute bei Müller von 8 bis 12 Uhr gearbeitet, 40 Kilometer gefahren, 25 Euro Material und 50 Euro Stundenlohn."></textarea>
+<h2>Was hast du heute gemacht?</h2>
 
- <button class="primary" id="analyseButton">🤖 Auftrag auswerten</button>
+<button class="mic" id="micButton">🎙️</button>
+
+<div class="status" id="status">
+Tippe auf das Mikrofon und sprich.
+</div>
+
+<textarea id="speechText"
+placeholder="Beispiel: Heute bei Müller von 8 bis 12 Uhr gearbeitet, 40 Kilometer gefahren, 25 Euro Material und 50 Euro Stundenlohn."></textarea>
+
+<button class="primary" id="analyseButton">
+🤖 Auftrag auswerten
+</button>
+
 </div>
 
 <div class="stats">
- <div class="stat"><div class="label">UMSATZ</div><div class="number" id="revenue">0 €</div></div>
- <div class="stat"><div class="label">ARBEITSZEIT</div><div class="number" id="hours">0 Std.</div></div>
- <div class="stat"><div class="label">AUFTRÄGE</div><div class="number" id="jobCount">0</div></div>
- <div class="stat"><div class="label">KUNDEN</div><div class="number" id="customerCount">0</div></div>
+
+<div class="stat">
+<div class="label">UMSATZ</div>
+<div class="number" id="revenue">0 €</div>
+</div>
+
+<div class="stat">
+<div class="label">ARBEITSZEIT</div>
+<div class="number" id="hours">0 Std.</div>
+</div>
+
+<div class="stat">
+<div class="label">AUFTRÄGE</div>
+<div class="number" id="jobCount">0</div>
+</div>
+
+<div class="stat">
+<div class="label">OFFENE RECHNUNGEN</div>
+<div class="number" id="openInvoices">0 €</div>
+</div>
+
 </div>
 
 <div id="resultBox" class="card hidden">
- <div class="section" style="margin-top:0">Erkannter Auftrag</div>
- <div class="row"><span>Kunde</span><b id="rCustomer">–</b></div>
- <div class="row"><span>Arbeitszeit</span><b id="rHours">–</b></div>
- <div class="row"><span>Kilometer</span><b id="rKm">–</b></div>
- <div class="row"><span>Material</span><b id="rMaterial">–</b></div>
- <div class="row"><span>Stundensatz</span><b id="rRate">–</b></div>
- <div class="row"><span>Gesamt</span><b class="total" id="rTotal">–</b></div>
- <button class="green" id="saveJobButton">✅ Auftrag speichern</button>
+
+<div class="section" style="margin-top:0">
+Erkannter Auftrag
+</div>
+
+<div class="row">
+<span>Kunde</span>
+<b id="rCustomer">–</b>
+</div>
+
+<div class="row">
+<span>Arbeitszeit</span>
+<b id="rHours">–</b>
+</div>
+
+<div class="row">
+<span>Kilometer</span>
+<b id="rKm">–</b>
+</div>
+
+<div class="row">
+<span>Material</span>
+<b id="rMaterial">–</b>
+</div>
+
+<div class="row">
+<span>Stundensatz</span>
+<b id="rRate">–</b>
+</div>
+
+<div class="row">
+<span>Fahrtkosten</span>
+<b id="rTravel">–</b>
+</div>
+
+<div class="row">
+<span>Gesamt</span>
+<b class="total" id="rTotal">–</b>
+</div>
+
+<button class="green" id="saveJobButton">
+✅ Auftrag speichern
+</button>
+
 </div>
 
 <div class="section">Schnellzugriff</div>
 
 <div class="actions">
- <button class="action" onclick="showPage('jobs')"><span>📋</span>Aufträge</button>
- <button class="action" onclick="showPage('customers')"><span>👥</span>Kunden</button>
- <button class="action" onclick="showPage('invoices')"><span>🧾</span>Rechnungen</button>
- <button class="action" onclick="document.getElementById('speechText').focus()"><span>➕</span>Neuer Auftrag</button>
+
+<button class="action" onclick="showPage('jobs')">
+<span>📋</span>
+Aufträge
+</button>
+
+<button class="action" onclick="showPage('customers')">
+<span>👥</span>
+Kunden
+</button>
+
+<button class="action" onclick="showPage('invoices')">
+<span>🧾</span>
+Rechnungen
+</button>
+
+<button class="action" onclick="showPage('profile')">
+<span>🏢</span>
+Firmenprofil
+</button>
+
 </div>
 
 <div class="section">Letzte Aufträge</div>
+
 <div id="homeJobs"></div>
 
 </div>
@@ -160,16 +395,23 @@ button{cursor:pointer}
 <div class="welcome">👥 Kunden</div>
 
 <div class="card">
- <h3>Neuen Kunden anlegen</h3>
- <input id="cName" placeholder="Name / Firma">
- <input id="cStreet" placeholder="Straße und Hausnummer">
- <input id="cCity" placeholder="PLZ und Ort">
- <input id="cEmail" type="email" placeholder="E-Mail">
- <input id="cPhone" type="tel" placeholder="Telefon">
- <button class="green" id="addCustomer">Kunde speichern</button>
+
+<h3>Neuen Kunden anlegen</h3>
+
+<input id="cName" placeholder="Name / Firma">
+<input id="cStreet" placeholder="Straße und Hausnummer">
+<input id="cCity" placeholder="PLZ und Ort">
+<input id="cEmail" type="email" placeholder="E-Mail">
+<input id="cPhone" type="tel" placeholder="Telefon">
+
+<button class="green" id="addCustomer">
+Kunde speichern
+</button>
+
 </div>
 
 <div class="section">Meine Kunden</div>
+
 <div id="customerList"></div>
 
 </div>
@@ -178,6 +420,7 @@ button{cursor:pointer}
 <div id="jobsPage" class="hidden">
 
 <div class="welcome">📋 Aufträge</div>
+
 <div id="jobList"></div>
 
 </div>
@@ -186,10 +429,46 @@ button{cursor:pointer}
 <div id="invoicesPage" class="hidden">
 
 <div class="welcome">🧾 Rechnungen</div>
+
 <div class="card">
-Wähle bei einem gespeicherten Auftrag <b>„Rechnung erstellen“</b>.
+Bei einem Auftrag kannst du automatisch eine Rechnung erstellen.
 </div>
+
 <div id="invoiceList"></div>
+
+</div>
+
+
+<div id="profilePage" class="hidden">
+
+<div class="welcome">🏢 Firmenprofil</div>
+
+<div class="card">
+
+<input id="pCompany" placeholder="Firmenname">
+<input id="pOwner" placeholder="Inhaber">
+<input id="pStreet" placeholder="Straße und Hausnummer">
+<input id="pCity" placeholder="PLZ und Ort">
+<input id="pPhone" placeholder="Telefon">
+<input id="pEmail" placeholder="E-Mail">
+
+<input id="pTax" placeholder="Steuernummer / USt-ID">
+
+<input id="pBank" placeholder="Bank">
+<input id="pIban" placeholder="IBAN">
+
+<input id="pKmRate" type="number" step="0.01" placeholder="Fahrtkosten pro km, z.B. 0.50">
+
+<label class="checkbox">
+<input id="pSmallBusiness" type="checkbox">
+Kleinunternehmerregelung verwenden
+</label>
+
+<button class="green" id="saveProfile">
+Firmenprofil speichern
+</button>
+
+</div>
 
 </div>
 
@@ -200,8 +479,13 @@ Wähle bei einem gespeicherten Auftrag <b>„Rechnung erstellen“</b>.
 
 <div id="invoicePaper" class="invoice-paper"></div>
 
-<button class="secondary" onclick="window.print()">🖨️ Drucken / als PDF sichern</button>
-<button class="primary" onclick="showPage('invoices')">Zurück zu Rechnungen</button>
+<button class="secondary" onclick="window.print()">
+🖨️ Drucken / als PDF sichern
+</button>
+
+<button class="primary" onclick="showPage('invoices')">
+Zurück zu Rechnungen
+</button>
 
 </div>
 
@@ -209,192 +493,440 @@ Wähle bei einem gespeicherten Auftrag <b>„Rechnung erstellen“</b>.
 
 
 <div class="nav">
-<button id="navHome" class="active" onclick="showPage('home')"><span>🏠</span>HOME</button>
-<button id="navJobs" onclick="showPage('jobs')"><span>📋</span>AUFTRÄGE</button>
-<button id="navCustomers" onclick="showPage('customers')"><span>👥</span>KUNDEN</button>
-<button id="navInvoices" onclick="showPage('invoices')"><span>🧾</span>RECHNUNGEN</button>
+
+<button id="navHome" class="active"
+onclick="showPage('home')">
+<span>🏠</span>
+HOME
+</button>
+
+<button id="navJobs"
+onclick="showPage('jobs')">
+<span>📋</span>
+AUFTRÄGE
+</button>
+
+<button id="navCustomers"
+onclick="showPage('customers')">
+<span>👥</span>
+KUNDEN
+</button>
+
+<button id="navInvoices"
+onclick="showPage('invoices')">
+<span>🧾</span>
+RECHNUNGEN
+</button>
+
+<button id="navProfile"
+onclick="showPage('profile')">
+<span>🏢</span>
+PROFIL
+</button>
+
 </div>
 
 
 <script>
+
 const $ = id => document.getElementById(id);
 
-let jobs = JSON.parse(localStorage.getItem("mdJobs") || "[]");
-let customers = JSON.parse(localStorage.getItem("mdCustomers") || "[]");
-let invoices = JSON.parse(localStorage.getItem("mdInvoices") || "[]");
+let jobs =
+JSON.parse(localStorage.getItem("mdJobs") || "[]");
+
+let customers =
+JSON.parse(localStorage.getItem("mdCustomers") || "[]");
+
+let invoices =
+JSON.parse(localStorage.getItem("mdInvoices") || "[]");
+
+let profile =
+JSON.parse(localStorage.getItem("mdProfile") || "{}");
+
 let currentJob = null;
 
+
 function money(n){
- return Number(n || 0).toLocaleString("de-DE",{minimumFractionDigits:2,maximumFractionDigits:2})+" €";
+
+return Number(n || 0)
+.toLocaleString(
+"de-DE",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
 }
+)
++" €";
+
+}
+
 
 function saveAll(){
- localStorage.setItem("mdJobs",JSON.stringify(jobs));
- localStorage.setItem("mdCustomers",JSON.stringify(customers));
- localStorage.setItem("mdInvoices",JSON.stringify(invoices));
+
+localStorage.setItem(
+"mdJobs",
+JSON.stringify(jobs)
+);
+
+localStorage.setItem(
+"mdCustomers",
+JSON.stringify(customers)
+);
+
+localStorage.setItem(
+"mdInvoices",
+JSON.stringify(invoices)
+);
+
+localStorage.setItem(
+"mdProfile",
+JSON.stringify(profile)
+);
+
 }
 
+
 function showPage(page){
- ["homePage","customersPage","jobsPage","invoicesPage","invoicePage"]
- .forEach(x => $(x).classList.add("hidden"));
 
- ["navHome","navJobs","navCustomers","navInvoices"]
- .forEach(x => $(x).classList.remove("active"));
+[
+"homePage",
+"customersPage",
+"jobsPage",
+"invoicesPage",
+"profilePage",
+"invoicePage"
+]
+.forEach(x => $(x).classList.add("hidden"));
 
- if(page==="home"){
-   $("homePage").classList.remove("hidden");
-   $("navHome").classList.add("active");
- }
- if(page==="customers"){
-   $("customersPage").classList.remove("hidden");
-   $("navCustomers").classList.add("active");
- }
- if(page==="jobs"){
-   $("jobsPage").classList.remove("hidden");
-   $("navJobs").classList.add("active");
- }
- if(page==="invoices"){
-   $("invoicesPage").classList.remove("hidden");
-   $("navInvoices").classList.add("active");
- }
- if(page==="invoice"){
-   $("invoicePage").classList.remove("hidden");
- }
+[
+"navHome",
+"navJobs",
+"navCustomers",
+"navInvoices",
+"navProfile"
+]
+.forEach(x => $(x).classList.remove("active"));
 
- render();
- window.scrollTo(0,0);
+
+if(page==="home"){
+$("homePage").classList.remove("hidden");
+$("navHome").classList.add("active");
+}
+
+if(page==="customers"){
+$("customersPage").classList.remove("hidden");
+$("navCustomers").classList.add("active");
+}
+
+if(page==="jobs"){
+$("jobsPage").classList.remove("hidden");
+$("navJobs").classList.add("active");
+}
+
+if(page==="invoices"){
+$("invoicesPage").classList.remove("hidden");
+$("navInvoices").classList.add("active");
+}
+
+if(page==="profile"){
+$("profilePage").classList.remove("hidden");
+$("navProfile").classList.add("active");
+loadProfile();
+}
+
+if(page==="invoice"){
+$("invoicePage").classList.remove("hidden");
+}
+
+render();
+
+window.scrollTo(0,0);
+
 }
 
 
 /* SPRACHE */
 
 const SpeechRecognition =
-window.SpeechRecognition || window.webkitSpeechRecognition;
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
 
 if(SpeechRecognition){
 
- const recognition = new SpeechRecognition();
- recognition.lang="de-DE";
- recognition.interimResults=true;
- recognition.continuous=false;
+const recognition =
+new SpeechRecognition();
 
- recognition.onstart=()=>{
-   $("micButton").classList.add("listening");
-   $("status").textContent="🔴 Ich höre zu …";
- };
+recognition.lang="de-DE";
+recognition.interimResults=true;
+recognition.continuous=false;
 
- recognition.onresult=e=>{
-   let text="";
-   for(let i=e.resultIndex;i<e.results.length;i++){
-     text+=e.results[i][0].transcript;
-   }
-   $("speechText").value=text;
- };
+recognition.onstart=()=>{
 
- recognition.onend=()=>{
-   $("micButton").classList.remove("listening");
-   $("status").textContent="✅ Aufnahme beendet.";
- };
+$("micButton")
+.classList.add("listening");
 
- recognition.onerror=()=>{
-   $("micButton").classList.remove("listening");
-   $("status").textContent="Nutze alternativ das Mikrofon deiner iPhone-Tastatur.";
- };
+$("status").textContent =
+"🔴 Ich höre zu …";
 
- $("micButton").onclick=()=>{
-   try{recognition.start()}catch(e){}
- };
+};
+
+recognition.onresult=e=>{
+
+let text="";
+
+for(
+let i=e.resultIndex;
+i<e.results.length;
+i++
+){
+
+text +=
+e.results[i][0].transcript;
+
+}
+
+$("speechText").value=text;
+
+};
+
+recognition.onend=()=>{
+
+$("micButton")
+.classList.remove("listening");
+
+$("status").textContent =
+"✅ Aufnahme beendet.";
+
+};
+
+recognition.onerror=()=>{
+
+$("micButton")
+.classList.remove("listening");
+
+$("status").textContent =
+"Nutze alternativ das Mikrofon deiner iPhone-Tastatur.";
+
+};
+
+$("micButton").onclick=()=>{
+
+try{
+recognition.start();
+}catch(e){}
+
+};
 
 }else{
- $("micButton").onclick=()=>{
-   $("speechText").focus();
-   $("status").textContent="Nutze bitte das Mikrofon deiner iPhone-Tastatur.";
- };
+
+$("micButton").onclick=()=>{
+
+$("speechText").focus();
+
+$("status").textContent =
+"Nutze bitte das Mikrofon deiner iPhone-Tastatur.";
+
+};
+
 }
 
 
-/* AUFTRAG AUS TEXT */
+/* TEXT AUSWERTEN */
 
 function analyse(){
 
- const text=$("speechText").value.trim();
+const text =
+$("speechText").value.trim();
 
- if(!text){
-   alert("Bitte zuerst etwas sprechen oder eingeben.");
-   return;
- }
+if(!text){
 
- let customer="Unbekannt";
+alert(
+"Bitte zuerst etwas sprechen oder eingeben."
+);
 
- const cm=text.match(/(?:bei|kunde)\s+([A-Za-zÄÖÜäöüß0-9.-]+)/i);
- if(cm) customer=cm[1];
+return;
 
- let hours=0;
-
- const tm=text.match(
- /von\s+(\d{1,2})(?::(\d{2}))?\s*(?:uhr)?\s+bis\s+(\d{1,2})(?::(\d{2}))?/i
- );
-
- if(tm){
-   const start=Number(tm[1])+Number(tm[2]||0)/60;
-   const end=Number(tm[3])+Number(tm[4]||0)/60;
-   hours=Math.max(0,end-start);
- }
-
- const kmM=text.match(/(\d+(?:[.,]\d+)?)\s*(?:km|kilometer)/i);
- const km=kmM ? Number(kmM[1].replace(",",".")) : 0;
-
- const materialM=text.match(
- /(\d+(?:[.,]\d+)?)\s*(?:€|euro)\s*(?:material|materialkosten)/i
- );
- const material=materialM ? Number(materialM[1].replace(",",".")) : 0;
-
- const rateM=text.match(
- /(\d+(?:[.,]\d+)?)\s*(?:€|euro)\s*(?:stundenlohn|stundensatz|pro stunde)/i
- );
- const rate=rateM ? Number(rateM[1].replace(",",".")) : 0;
-
- const labour=hours*rate;
- const total=labour+material;
-
- currentJob={
-   id:Date.now(),
-   customer,
-   hours,
-   km,
-   material,
-   rate,
-   labour,
-   total,
-   text,
-   date:new Date().toLocaleDateString("de-DE")
- };
-
- $("rCustomer").textContent=customer;
- $("rHours").textContent=hours.toFixed(2)+" Std.";
- $("rKm").textContent=km+" km";
- $("rMaterial").textContent=money(material);
- $("rRate").textContent=money(rate)+"/Std.";
- $("rTotal").textContent=money(total);
-
- $("resultBox").classList.remove("hidden");
 }
 
-$("analyseButton").onclick=analyse;
+
+let customer="Unbekannt";
+
+const cm =
+text.match(
+/(?:bei|kunde)\s+([A-Za-zÄÖÜäöüß0-9.-]+)/i
+);
+
+if(cm){
+
+customer=cm[1];
+
+}
+
+
+let hours=0;
+
+const tm =
+text.match(
+/von\s+(\d{1,2})(?::(\d{2}))?\s*(?:uhr)?\s+bis\s+(\d{1,2})(?::(\d{2}))?/i
+);
+
+if(tm){
+
+const start =
+Number(tm[1]) +
+Number(tm[2]||0)/60;
+
+const end =
+Number(tm[3]) +
+Number(tm[4]||0)/60;
+
+hours =
+Math.max(0,end-start);
+
+}
+
+
+const kmM =
+text.match(
+/(\d+(?:[.,]\d+)?)\s*(?:km|kilometer)/i
+);
+
+const km =
+kmM
+?
+Number(kmM[1].replace(",","."))
+:
+0;
+
+
+const materialM =
+text.match(
+/(\d+(?:[.,]\d+)?)\s*(?:€|euro)\s*(?:material|materialkosten)/i
+);
+
+const material =
+materialM
+?
+Number(
+materialM[1].replace(",",".")
+)
+:
+0;
+
+
+const rateM =
+text.match(
+/(\d+(?:[.,]\d+)?)\s*(?:€|euro)\s*(?:stundenlohn|stundensatz|pro stunde)/i
+);
+
+const rate =
+rateM
+?
+Number(
+rateM[1].replace(",",".")
+)
+:
+0;
+
+
+const kmRate =
+Number(profile.kmRate || 0);
+
+const labour =
+hours * rate;
+
+const travel =
+km * kmRate;
+
+const total =
+labour +
+material +
+travel;
+
+
+currentJob={
+
+id:Date.now(),
+
+customer,
+
+hours,
+
+km,
+
+material,
+
+rate,
+
+kmRate,
+
+labour,
+
+travel,
+
+total,
+
+text,
+
+date:
+new Date()
+.toLocaleDateString("de-DE")
+
+};
+
+
+$("rCustomer").textContent =
+customer;
+
+$("rHours").textContent =
+hours.toFixed(2)+" Std.";
+
+$("rKm").textContent =
+km+" km";
+
+$("rMaterial").textContent =
+money(material);
+
+$("rRate").textContent =
+money(rate)+"/Std.";
+
+$("rTravel").textContent =
+money(travel);
+
+$("rTotal").textContent =
+money(total);
+
+
+$("resultBox")
+.classList.remove("hidden");
+
+}
+
+
+$("analyseButton").onclick =
+analyse;
+
 
 $("saveJobButton").onclick=()=>{
 
- if(!currentJob) return;
+if(!currentJob) return;
 
- jobs.unshift(currentJob);
- saveAll();
+jobs.unshift(currentJob);
 
- $("speechText").value="";
- $("resultBox").classList.add("hidden");
- $("status").textContent="✅ Auftrag gespeichert.";
+saveAll();
 
- currentJob=null;
- render();
+$("speechText").value="";
+
+$("resultBox")
+.classList.add("hidden");
+
+$("status").textContent =
+"✅ Auftrag gespeichert.";
+
+currentJob=null;
+
+render();
+
 };
 
 
@@ -402,117 +934,427 @@ $("saveJobButton").onclick=()=>{
 
 $("addCustomer").onclick=()=>{
 
- const name=$("cName").value.trim();
+const name =
+$("cName").value.trim();
 
- if(!name){
-   alert("Bitte einen Kundennamen eingeben.");
-   return;
- }
+if(!name){
 
- customers.unshift({
-   id:Date.now(),
-   name,
-   street:$("cStreet").value.trim(),
-   city:$("cCity").value.trim(),
-   email:$("cEmail").value.trim(),
-   phone:$("cPhone").value.trim()
- });
+alert(
+"Bitte einen Kundennamen eingeben."
+);
 
- saveAll();
+return;
 
- ["cName","cStreet","cCity","cEmail","cPhone"]
- .forEach(x=>$(x).value="");
+}
 
- render();
+customers.unshift({
+
+id:Date.now(),
+
+name,
+
+street:
+$("cStreet").value.trim(),
+
+city:
+$("cCity").value.trim(),
+
+email:
+$("cEmail").value.trim(),
+
+phone:
+$("cPhone").value.trim()
+
+});
+
+saveAll();
+
+[
+"cName",
+"cStreet",
+"cCity",
+"cEmail",
+"cPhone"
+]
+.forEach(
+x => $(x).value=""
+);
+
+render();
+
 };
 
 
-/* RECHNUNG */
+/* PROFIL */
+
+function loadProfile(){
+
+$("pCompany").value =
+profile.company || "";
+
+$("pOwner").value =
+profile.owner || "";
+
+$("pStreet").value =
+profile.street || "";
+
+$("pCity").value =
+profile.city || "";
+
+$("pPhone").value =
+profile.phone || "";
+
+$("pEmail").value =
+profile.email || "";
+
+$("pTax").value =
+profile.tax || "";
+
+$("pBank").value =
+profile.bank || "";
+
+$("pIban").value =
+profile.iban || "";
+
+$("pKmRate").value =
+profile.kmRate ?? "0.50";
+
+$("pSmallBusiness").checked =
+profile.smallBusiness ?? true;
+
+}
+
+
+$("saveProfile").onclick=()=>{
+
+profile={
+
+company:
+$("pCompany").value.trim(),
+
+owner:
+$("pOwner").value.trim(),
+
+street:
+$("pStreet").value.trim(),
+
+city:
+$("pCity").value.trim(),
+
+phone:
+$("pPhone").value.trim(),
+
+email:
+$("pEmail").value.trim(),
+
+tax:
+$("pTax").value.trim(),
+
+bank:
+$("pBank").value.trim(),
+
+iban:
+$("pIban").value.trim(),
+
+kmRate:
+Number(
+$("pKmRate").value || 0
+),
+
+smallBusiness:
+$("pSmallBusiness").checked
+
+};
+
+saveAll();
+
+alert(
+"✅ Firmenprofil gespeichert."
+);
+
+};
+
+
+/* RECHNUNGEN */
+
+function nextInvoiceNumber(){
+
+const year =
+new Date().getFullYear();
+
+let max=0;
+
+invoices.forEach(inv=>{
+
+const match =
+String(inv.number || "")
+.match(
+new RegExp(
+"MD-"+year+"-(\\\\d+)"
+)
+);
+
+if(match){
+
+max =
+Math.max(
+max,
+Number(match[1])
+);
+
+}
+
+});
+
+return (
+"MD-"+year+"-"+
+String(max+1)
+.padStart(4,"0")
+);
+
+}
+
 
 function createInvoice(jobId){
 
- const job=jobs.find(j=>j.id===jobId);
- if(!job) return;
+const job =
+jobs.find(
+j=>j.id===jobId
+);
 
- let customer=customers.find(
- c=>c.name.toLowerCase()===job.customer.toLowerCase()
- );
+if(!job) return;
 
- const invoice={
-   id:Date.now(),
-   number:"MD-"+new Date().getFullYear()+"-"+String(invoices.length+1).padStart(4,"0"),
-   date:new Date().toLocaleDateString("de-DE"),
-   job,
-   customer:customer || {name:job.customer,street:"",city:"",email:"",phone:""}
- };
 
- invoices.unshift(invoice);
- saveAll();
+let customer =
+customers.find(
+c =>
+c.name.toLowerCase()
+===
+job.customer.toLowerCase()
+);
 
- openInvoice(invoice.id);
+
+const invoice={
+
+id:Date.now(),
+
+number:
+nextInvoiceNumber(),
+
+date:
+new Date()
+.toLocaleDateString("de-DE"),
+
+status:"open",
+
+job,
+
+customer:
+customer ||
+{
+name:job.customer,
+street:"",
+city:"",
+email:"",
+phone:""
+}
+
+};
+
+
+invoices.unshift(invoice);
+
+saveAll();
+
+openInvoice(invoice.id);
+
 }
 
 
 function openInvoice(id){
 
- const inv=invoices.find(i=>i.id===id);
- if(!inv) return;
+const inv =
+invoices.find(
+i=>i.id===id
+);
 
- const j=inv.job;
- const c=inv.customer;
+if(!inv) return;
 
- $("invoicePaper").innerHTML=`
- <h2>RECHNUNG</h2>
 
- <div class="muted">
- MD Work AI<br>
- Firmenangaben später in den Einstellungen
- </div>
+const j=inv.job;
+const c=inv.customer;
 
- <hr>
+const business =
+profile.company ||
+"Mein Unternehmen";
 
- <b>Rechnung an:</b><br>
- ${c.name || ""}<br>
- ${c.street || ""}<br>
- ${c.city || ""}
+const owner =
+profile.owner || "";
 
- <p>
- <b>Rechnungsnummer:</b> ${inv.number}<br>
- <b>Datum:</b> ${inv.date}
- </p>
+const companyAddress =
+[
+profile.street,
+profile.city
+]
+.filter(Boolean)
+.join("<br>");
 
- <hr>
+let taxNote="";
 
- <p><b>Arbeitsleistung</b></p>
+if(profile.smallBusiness){
 
- <div class="row">
- <span>${Number(j.hours).toFixed(2)} Std. × ${money(j.rate)}</span>
- <b>${money(j.labour)}</b>
- </div>
+taxNote =
+`
+<p class="muted">
+Gemäß § 19 UStG wird keine Umsatzsteuer ausgewiesen.
+</p>
+`;
 
- <div class="row">
- <span>Material</span>
- <b>${money(j.material)}</b>
- </div>
+}
 
- <div class="row">
- <span>Fahrt</span>
- <b>${j.km} km</b>
- </div>
 
- <hr>
+$("invoicePaper").innerHTML=`
 
- <div class="invoice-total">
- Gesamt: ${money(j.total)}
- </div>
+<h2>RECHNUNG</h2>
 
- <p class="muted">
- Entwurf – steuerliche Pflichtangaben und Unternehmenseinstellungen
- werden in einer späteren Version ergänzt.
- </p>
- `;
+<div class="muted">
+<b>${business}</b><br>
+${owner}<br>
+${companyAddress}<br>
+${profile.phone || ""}<br>
+${profile.email || ""}
+</div>
 
- showPage("invoice");
+<hr>
+
+<b>Rechnung an:</b><br>
+
+${c.name || ""}<br>
+${c.street || ""}<br>
+${c.city || ""}
+
+<p>
+
+<b>Rechnungsnummer:</b>
+${inv.number}<br>
+
+<b>Rechnungsdatum:</b>
+${inv.date}<br>
+
+<b>Status:</b>
+${inv.status==="paid"
+?"Bezahlt"
+:"Offen"}
+
+</p>
+
+<hr>
+
+<p>
+<b>Arbeitsleistung</b>
+</p>
+
+<div class="row">
+
+<span>
+${Number(j.hours).toFixed(2)}
+Std. ×
+${money(j.rate)}
+</span>
+
+<b>
+${money(j.labour)}
+</b>
+
+</div>
+
+
+<div class="row">
+
+<span>Material</span>
+
+<b>
+${money(j.material)}
+</b>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Fahrt:
+${j.km} km ×
+${money(j.kmRate || 0)}
+</span>
+
+<b>
+${money(j.travel || 0)}
+</b>
+
+</div>
+
+
+<hr>
+
+<div class="invoice-total">
+
+Gesamt:
+${money(j.total)}
+
+</div>
+
+
+${taxNote}
+
+
+${profile.tax
+?
+`<p class="muted">
+Steuernummer / USt-ID:
+${profile.tax}
+</p>`
+:
+""}
+
+
+${profile.iban
+?
+`<p class="muted">
+Bitte überweisen Sie den Rechnungsbetrag auf:<br>
+${profile.bank || ""}<br>
+IBAN: ${profile.iban}
+</p>`
+:
+""}
+
+`;
+
+showPage("invoice");
+
+}
+
+
+function toggleInvoiceStatus(id){
+
+const inv =
+invoices.find(
+i=>i.id===id
+);
+
+if(!inv) return;
+
+inv.status =
+inv.status==="paid"
+?
+"open"
+:
+"paid";
+
+saveAll();
+
+render();
+
 }
 
 
@@ -520,87 +1362,232 @@ function openInvoice(id){
 
 function render(){
 
- $("customerCount").textContent=customers.length;
- $("jobCount").textContent=jobs.length;
-
- let rev=0;
- let hrs=0;
-
- jobs.forEach(j=>{
-   rev+=Number(j.total||0);
-   hrs+=Number(j.hours||0);
- });
-
- $("revenue").textContent=money(rev);
- $("hours").textContent=hrs.toFixed(1)+" Std.";
+$("jobCount").textContent =
+jobs.length;
 
 
- const customerList=$("customerList");
- customerList.innerHTML="";
+let revenue=0;
 
- if(customers.length===0){
-   customerList.innerHTML='<div class="customer">Noch keine Kunden gespeichert.</div>';
- }
+let hrs=0;
 
- customers.forEach(c=>{
-   const div=document.createElement("div");
-   div.className="customer";
-   div.innerHTML=`
-   <div class="item-title">${c.name}</div>
-   <div class="item-info">
-   ${c.street}<br>
-   ${c.city}<br>
-   ${c.email}<br>
-   ${c.phone}
-   </div>
-   `;
-   customerList.appendChild(div);
- });
+jobs.forEach(j=>{
+
+revenue +=
+Number(j.total || 0);
+
+hrs +=
+Number(j.hours || 0);
+
+});
+
+$("revenue").textContent =
+money(revenue);
+
+$("hours").textContent =
+hrs.toFixed(1)+" Std.";
 
 
- function jobHTML(j,buttons=true){
-   return `
-   <div class="job">
-    <div class="item-title">${j.customer}</div>
-    <div class="item-info">
-     ${j.date} · ${Number(j.hours).toFixed(2)} Std.<br>
-     ${j.km} km · Material ${money(j.material)}
-    </div>
-    <div class="badge">${money(j.total)}</div>
-    ${buttons ?
-    `<button class="primary" onclick="createInvoice(${j.id})">
-      🧾 Rechnung erstellen
-     </button>` : ""}
-   </div>`;
- }
+let openTotal=0;
 
- $("jobList").innerHTML=
- jobs.length ? jobs.map(j=>jobHTML(j,true)).join("") :
- '<div class="job">Noch keine Aufträge gespeichert.</div>';
+invoices
+.filter(
+i => i.status !== "paid"
+)
+.forEach(i=>{
 
- $("homeJobs").innerHTML=
- jobs.length ? jobs.slice(0,3).map(j=>jobHTML(j,false)).join("") :
- '<div class="job">Noch keine Aufträge gespeichert.</div>';
+openTotal +=
+Number(
+i.job?.total || 0
+);
+
+});
+
+$("openInvoices").textContent =
+money(openTotal);
 
 
- $("invoiceList").innerHTML=
- invoices.length ?
- invoices.map(i=>`
- <div class="invoice">
-   <div class="item-title">${i.number}</div>
-   <div class="item-info">${i.customer.name} · ${i.date}</div>
-   <div class="badge">${money(i.job.total)}</div>
-   <button class="secondary" onclick="openInvoice(${i.id})">
-   Rechnung öffnen
-   </button>
- </div>
- `).join("")
- :
- '<div class="invoice">Noch keine Rechnungen erstellt.</div>';
+/* KUNDEN */
+
+const customerList =
+$("customerList");
+
+customerList.innerHTML="";
+
+if(customers.length===0){
+
+customerList.innerHTML =
+'<div class="customer">Noch keine Kunden gespeichert.</div>';
 
 }
 
+customers.forEach(c=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+"customer";
+
+div.innerHTML=`
+
+<div class="item-title">
+${c.name}
+</div>
+
+<div class="item-info">
+
+${c.street}<br>
+
+${c.city}<br>
+
+${c.email}<br>
+
+${c.phone}
+
+</div>
+
+`;
+
+customerList.appendChild(div);
+
+});
+
+
+function jobHTML(j,buttons=true){
+
+return `
+
+<div class="job">
+
+<div class="item-title">
+${j.customer}
+</div>
+
+<div class="item-info">
+
+${j.date} ·
+${Number(j.hours).toFixed(2)}
+Std.<br>
+
+${j.km} km ·
+Material ${money(j.material)}<br>
+
+Fahrt ${money(j.travel || 0)}
+
+</div>
+
+<div class="badge">
+${money(j.total)}
+</div>
+
+${buttons
+?
+`
+<button
+class="primary"
+onclick="createInvoice(${j.id})">
+
+🧾 Rechnung erstellen
+
+</button>
+`
+:
+""
+}
+
+</div>
+
+`;
+
+}
+
+
+$("jobList").innerHTML =
+
+jobs.length
+?
+jobs.map(
+j=>jobHTML(j,true)
+).join("")
+:
+'<div class="job">Noch keine Aufträge gespeichert.</div>';
+
+
+$("homeJobs").innerHTML =
+
+jobs.length
+?
+jobs
+.slice(0,3)
+.map(
+j=>jobHTML(j,false)
+)
+.join("")
+:
+'<div class="job">Noch keine Aufträge gespeichert.</div>';
+
+
+$("invoiceList").innerHTML =
+
+invoices.length
+?
+invoices.map(i=>`
+
+<div class="invoice">
+
+<div class="item-title">
+${i.number}
+</div>
+
+<div class="item-info">
+
+${i.customer.name} ·
+${i.date}
+
+</div>
+
+<div class="badge ${i.status==="paid"?"paid":"open"}">
+
+${i.status==="paid"
+?"✅ Bezahlt"
+:"⏳ Offen"}
+
+</div>
+
+<div class="badge">
+${money(i.job.total)}
+</div>
+
+<button
+class="secondary"
+onclick="openInvoice(${i.id})">
+
+Rechnung öffnen
+
+</button>
+
+<button
+class="${i.status==="paid"?"secondary":"green"}"
+onclick="toggleInvoiceStatus(${i.id})">
+
+${i.status==="paid"
+?"Als offen markieren"
+:"✅ Als bezahlt markieren"}
+
+</button>
+
+</div>
+
+`).join("")
+:
+'<div class="invoice">Noch keine Rechnungen erstellt.</div>';
+
+}
+
+
+loadProfile();
 render();
+
 </script>
 
 </body>
