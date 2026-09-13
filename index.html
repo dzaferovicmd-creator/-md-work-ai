@@ -2,185 +2,268 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+
 <title>MD Work AI</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{
+box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  background: #0b0d12;
-  color: white;
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:#0b0d12;
+color:white;
 }
 
-.app {
-  max-width: 500px;
-  margin: auto;
-  padding: 22px 18px 100px;
+.app{
+max-width:520px;
+margin:auto;
+padding:25px 18px 110px;
 }
 
-.logo {
-  font-size: 27px;
-  font-weight: 800;
+.logo{
+font-size:29px;
+font-weight:900;
 }
 
-.logo span {
-  color: #4c8dff;
+.logo span{
+color:#4285ff;
 }
 
-.subtitle {
-  color: #999;
-  margin-top: 5px;
+.subtitle{
+color:#999;
+margin-top:7px;
+font-size:16px;
 }
 
-.welcome {
-  margin-top: 30px;
-  font-size: 25px;
-  font-weight: 700;
+.welcome{
+margin-top:35px;
+font-size:28px;
+font-weight:800;
 }
 
-.ai {
-  margin-top: 25px;
-  padding: 25px;
-  border-radius: 24px;
-  text-align: center;
-  background: linear-gradient(135deg,#17233c,#10141d);
-  border: 1px solid #2d4e88;
+.ai-box{
+margin-top:25px;
+padding:24px 18px;
+border-radius:26px;
+background:linear-gradient(145deg,#182743,#111827);
+border:1px solid #3466b5;
+text-align:center;
 }
 
-.mic {
-  width: 85px;
-  height: 85px;
-  margin: 15px auto;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 38px;
-  background: #3478f6;
-  box-shadow: 0 0 30px #3478f655;
+.ai-title{
+font-size:22px;
+font-weight:800;
 }
 
-.ai-title {
-  font-size: 21px;
-  font-weight: 700;
+.mic{
+width:95px;
+height:95px;
+margin:20px auto;
+border:0;
+border-radius:50%;
+font-size:43px;
+background:#3478f6;
+display:grid;
+place-items:center;
+box-shadow:0 0 30px #3478f666;
+cursor:pointer;
 }
 
-.ai-text {
-  color: #aaa;
-  margin-top: 7px;
+.mic.listening{
+background:#e5484d;
+animation:pulse 1s infinite;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 22px;
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
 }
 
-.card {
-  background: #151820;
-  padding: 18px;
-  border-radius: 18px;
+.status{
+color:#aaa;
+font-size:14px;
+min-height:22px;
 }
 
-.number {
-  font-size: 24px;
-  font-weight: 800;
-  margin-top: 7px;
+textarea{
+width:100%;
+margin-top:18px;
+min-height:105px;
+border-radius:16px;
+border:1px solid #303846;
+background:#0d1118;
+color:white;
+padding:14px;
+font-size:16px;
+resize:none;
 }
 
-.label {
-  color: #999;
-  font-size: 13px;
+.primary{
+width:100%;
+margin-top:12px;
+border:0;
+border-radius:15px;
+padding:15px;
+font-size:16px;
+font-weight:800;
+background:#3478f6;
+color:white;
 }
 
-.title {
-  margin-top: 30px;
-  margin-bottom: 12px;
-  font-size: 19px;
-  font-weight: 700;
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:24px;
 }
 
-.actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+.card{
+background:#151820;
+border-radius:20px;
+padding:18px;
 }
 
-.action {
-  border: 0;
-  color: white;
-  background: #151820;
-  border-radius: 18px;
-  padding: 20px 10px;
-  font-size: 15px;
-  font-weight: 600;
+.label{
+font-size:12px;
+color:#999;
 }
 
-.icon {
-  display: block;
-  font-size: 27px;
-  margin-bottom: 8px;
+.number{
+font-size:25px;
+font-weight:900;
+margin-top:7px;
 }
 
-.job {
-  background: #151820;
-  border-radius: 18px;
-  padding: 16px;
-  margin-bottom: 10px;
+.section-title{
+font-size:21px;
+font-weight:800;
+margin:30px 0 14px;
 }
 
-.jobtop {
-  display: flex;
-  justify-content: space-between;
+.result{
+display:none;
+background:#151820;
+border-radius:22px;
+padding:18px;
 }
 
-.customer {
-  font-weight: 700;
+.result.show{
+display:block;
 }
 
-.time {
-  color: #999;
-  font-size: 14px;
-  margin-top: 6px;
+.row{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:10px 0;
+border-bottom:1px solid #252a34;
 }
 
-.status {
-  color: #55d98a;
+.row:last-child{
+border:0;
 }
 
-.nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 500px;
-  background: #11141a;
-  border-top: 1px solid #252934;
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  padding: 9px 4px 20px;
+.row span:first-child{
+color:#999;
 }
 
-.nav div {
-  text-align: center;
-  color: #888;
-  font-size: 11px;
+.total{
+font-size:22px;
+font-weight:900;
+color:#62df93;
 }
 
-.nav span {
-  display: block;
-  font-size: 23px;
-  margin-bottom: 4px;
+.save{
+width:100%;
+margin-top:15px;
+padding:15px;
+border:0;
+border-radius:15px;
+background:#32b768;
+color:white;
+font-size:16px;
+font-weight:900;
 }
 
-.active {
-  color: #4c8dff !important;
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.action{
+background:#151820;
+border:0;
+border-radius:18px;
+color:white;
+padding:20px 10px;
+font-size:15px;
+font-weight:700;
+}
+
+.action span{
+font-size:28px;
+display:block;
+margin-bottom:8px;
+}
+
+.job{
+background:#151820;
+border-radius:18px;
+padding:16px;
+margin-bottom:10px;
+}
+
+.job-title{
+font-weight:800;
+}
+
+.job-info{
+margin-top:6px;
+font-size:13px;
+color:#999;
+}
+
+.nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:520px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+background:#11141a;
+border-top:1px solid #252934;
+padding:10px 4px calc(18px + env(safe-area-inset-bottom));
+}
+
+.nav div{
+text-align:center;
+font-size:11px;
+color:#888;
+}
+
+.nav span{
+display:block;
+font-size:23px;
+margin-bottom:4px;
+}
+
+.nav .active{
+color:#4c8dff;
+}
+
+.notice{
+margin-top:10px;
+font-size:12px;
+color:#777;
 }
 </style>
 </head>
@@ -189,38 +272,63 @@ body {
 
 <div class="app">
 
-<div class="logo">MD WORK <span>AI</span></div>
-<div class="subtitle">Du arbeitest. Die KI macht dein Büro.</div>
+<div class="logo">
+MD WORK <span>AI</span>
+</div>
 
-<div class="welcome">Hallo Marjan 👋</div>
+<div class="subtitle">
+Du arbeitest. Die KI macht dein Büro.
+</div>
 
-<div class="ai">
+<div class="welcome">
+Hallo Marjan 👋
+</div>
 
-<div class="ai-title">Was hast du heute gemacht?</div>
+<div class="ai-box">
 
-<div class="mic">🎙️</div>
+<div class="ai-title">
+Was hast du heute gemacht?
+</div>
 
-<div class="ai-text">
-Tippe auf das Mikrofon und erzähle MD Work AI von deiner Arbeit.
+<button class="mic" id="micButton">
+🎙️
+</button>
+
+<div class="status" id="status">
+Tippe auf das Mikrofon und sprich.
+</div>
+
+<textarea
+id="speechText"
+placeholder="Zum Beispiel: Heute bei Müller von 8 bis 12 Uhr gearbeitet, 40 Kilometer gefahren, 25 Euro Material und 50 Euro Stundenlohn.">
+</textarea>
+
+<button class="primary" id="analyseButton">
+🤖 Auftrag auswerten
+</button>
+
+<div class="notice">
+Falls Spracherkennung auf deinem iPhone nicht startet, tippe in das Textfeld und benutze das Mikrofon deiner iPhone-Tastatur.
 </div>
 
 </div>
+
 
 <div class="stats">
 
 <div class="card">
 <div class="label">UMSATZ HEUTE</div>
-<div class="number">0 €</div>
+<div class="number" id="revenue">0 €</div>
 </div>
 
 <div class="card">
 <div class="label">ARBEITSZEIT</div>
-<div class="number">0 Std.</div>
+<div class="number" id="hours">0 Std.</div>
 </div>
 
 <div class="card">
 <div class="label">AUFTRÄGE</div>
-<div class="number">0</div>
+<div class="number" id="jobCount">0</div>
 </div>
 
 <div class="card">
@@ -230,48 +338,92 @@ Tippe auf das Mikrofon und erzähle MD Work AI von deiner Arbeit.
 
 </div>
 
-<div class="title">Schnellzugriff</div>
+
+<div class="section-title">
+Erkannter Auftrag
+</div>
+
+<div class="result" id="resultBox">
+
+<div class="row">
+<span>Kunde</span>
+<strong id="customer">–</strong>
+</div>
+
+<div class="row">
+<span>Arbeitszeit</span>
+<strong id="worktime">–</strong>
+</div>
+
+<div class="row">
+<span>Kilometer</span>
+<strong id="km">–</strong>
+</div>
+
+<div class="row">
+<span>Material</span>
+<strong id="material">–</strong>
+</div>
+
+<div class="row">
+<span>Stundenlohn</span>
+<strong id="rate">–</strong>
+</div>
+
+<div class="row">
+<span>Arbeitsleistung</span>
+<strong id="labour">–</strong>
+</div>
+
+<div class="row">
+<span>Gesamt</span>
+<strong class="total" id="total">–</strong>
+</div>
+
+<button class="save" id="saveButton">
+✅ Auftrag speichern
+</button>
+
+</div>
+
+
+<div class="section-title">
+Schnellzugriff
+</div>
 
 <div class="actions">
 
 <button class="action">
-<span class="icon">➕</span>
+<span>➕</span>
 Neuer Auftrag
 </button>
 
 <button class="action">
-<span class="icon">👥</span>
+<span>👥</span>
 Kunden
 </button>
 
 <button class="action">
-<span class="icon">📋</span>
+<span>📋</span>
 Aufträge
 </button>
 
 <button class="action">
-<span class="icon">🧾</span>
+<span>🧾</span>
 Rechnung
 </button>
 
 </div>
 
-<div class="title">Heute</div>
 
-<div class="job">
-
-<div class="jobtop">
-<div class="customer">Noch keine Aufträge</div>
-<div class="status">●</div>
+<div class="section-title">
+Gespeicherte Aufträge
 </div>
 
-<div class="time">
-Deine heutigen Aufträge erscheinen hier.
-</div>
+<div id="jobList"></div>
 
 </div>
 
-</div>
 
 <div class="nav">
 
@@ -296,6 +448,398 @@ Profil
 </div>
 
 </div>
+
+
+<script>
+
+const micButton =
+document.getElementById("micButton");
+
+const speechText =
+document.getElementById("speechText");
+
+const status =
+document.getElementById("status");
+
+let currentJob = null;
+
+let jobs =
+JSON.parse(localStorage.getItem("mdWorkJobs") || "[]");
+
+
+/* -------------------
+SPRACHERKENNUNG
+------------------- */
+
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+let recognition;
+
+if(SpeechRecognition){
+
+recognition = new SpeechRecognition();
+
+recognition.lang = "de-DE";
+recognition.continuous = false;
+recognition.interimResults = true;
+
+recognition.onstart = function(){
+
+micButton.classList.add("listening");
+
+status.textContent =
+"🔴 Ich höre zu …";
+
+};
+
+recognition.onresult = function(event){
+
+let text = "";
+
+for(let i = event.resultIndex;
+i < event.results.length;
+i++){
+
+text +=
+event.results[i][0].transcript;
+
+}
+
+speechText.value = text;
+
+};
+
+recognition.onerror = function(){
+
+micButton.classList.remove("listening");
+
+status.textContent =
+"Spracherkennung konnte nicht gestartet werden. Nutze bitte das Mikrofon der iPhone-Tastatur.";
+
+};
+
+recognition.onend = function(){
+
+micButton.classList.remove("listening");
+
+status.textContent =
+"✅ Aufnahme beendet. Jetzt auf „Auftrag auswerten“ drücken.";
+
+};
+
+micButton.onclick = function(){
+
+try{
+
+recognition.start();
+
+}catch(e){}
+
+};
+
+}else{
+
+micButton.onclick = function(){
+
+speechText.focus();
+
+status.textContent =
+"Safari unterstützt diese Aufnahme hier nicht. Benutze jetzt das Mikrofon auf deiner iPhone-Tastatur.";
+
+};
+
+}
+
+
+/* -------------------
+TEXT AUSWERTEN
+------------------- */
+
+function analyseText(){
+
+const text =
+speechText.value.trim();
+
+if(!text){
+
+alert("Bitte zuerst etwas sprechen oder eingeben.");
+
+return;
+
+}
+
+let customer = "Unbekannt";
+
+const customerMatch =
+text.match(/(?:bei|kunde)\s+([A-ZÄÖÜ][a-zA-ZäöüÄÖÜß]+)/i);
+
+if(customerMatch){
+
+customer =
+customerMatch[1];
+
+customer =
+customer.charAt(0).toUpperCase()
++
+customer.slice(1);
+
+}
+
+
+/* ZEIT */
+
+let hours = 0;
+
+const timeMatch =
+text.match(/von\s+(\d{1,2})(?::(\d{2}))?\s*(?:uhr)?\s+bis\s+(\d{1,2})(?::(\d{2}))?/i);
+
+if(timeMatch){
+
+const startHour =
+parseInt(timeMatch[1]);
+
+const startMin =
+parseInt(timeMatch[2] || 0);
+
+const endHour =
+parseInt(timeMatch[3]);
+
+const endMin =
+parseInt(timeMatch[4] || 0);
+
+hours =
+(endHour + endMin/60)
+-
+(startHour + startMin/60);
+
+}
+
+
+/* KILOMETER */
+
+let km = 0;
+
+const kmMatch =
+text.match(/(\d+(?:[.,]\d+)?)\s*(?:kilometer|km)/i);
+
+if(kmMatch){
+
+km =
+parseFloat(
+kmMatch[1].replace(",",".")
+);
+
+}
+
+
+/* MATERIAL */
+
+let material = 0;
+
+const materialMatch =
+text.match(/(\d+(?:[.,]\d+)?)\s*(?:euro|€)\s*(?:material|materialkosten)/i);
+
+if(materialMatch){
+
+material =
+parseFloat(
+materialMatch[1].replace(",",".")
+);
+
+}
+
+
+/* STUNDENLOHN */
+
+let rate = 0;
+
+const rateMatch =
+text.match(/(\d+(?:[.,]\d+)?)\s*(?:euro|€)\s*(?:stundenlohn|pro stunde|stundensatz)/i);
+
+if(rateMatch){
+
+rate =
+parseFloat(
+rateMatch[1].replace(",",".")
+);
+
+}
+
+
+/* BERECHNUNG */
+
+const labour =
+hours * rate;
+
+const total =
+labour + material;
+
+
+currentJob = {
+
+customer,
+hours,
+km,
+material,
+rate,
+labour,
+total,
+text,
+date:
+new Date().toLocaleDateString("de-DE")
+
+};
+
+
+document.getElementById("customer").textContent =
+customer;
+
+document.getElementById("worktime").textContent =
+hours.toFixed(2) + " Std.";
+
+document.getElementById("km").textContent =
+km + " km";
+
+document.getElementById("material").textContent =
+material.toFixed(2) + " €";
+
+document.getElementById("rate").textContent =
+rate.toFixed(2) + " €/Std.";
+
+document.getElementById("labour").textContent =
+labour.toFixed(2) + " €";
+
+document.getElementById("total").textContent =
+total.toFixed(2) + " €";
+
+document
+.getElementById("resultBox")
+.classList.add("show");
+
+}
+
+
+/* -------------------
+AUFTRAG SPEICHERN
+------------------- */
+
+function saveJob(){
+
+if(!currentJob){
+
+return;
+
+}
+
+jobs.unshift(currentJob);
+
+localStorage.setItem(
+"mdWorkJobs",
+JSON.stringify(jobs)
+);
+
+status.textContent =
+"✅ Auftrag wurde gespeichert.";
+
+speechText.value = "";
+
+document
+.getElementById("resultBox")
+.classList.remove("show");
+
+currentJob = null;
+
+renderJobs();
+
+}
+
+
+/* -------------------
+DASHBOARD
+------------------- */
+
+function renderJobs(){
+
+const list =
+document.getElementById("jobList");
+
+list.innerHTML = "";
+
+let revenue = 0;
+let hours = 0;
+
+jobs.forEach(job => {
+
+revenue += job.total || 0;
+hours += job.hours || 0;
+
+const div =
+document.createElement("div");
+
+div.className = "job";
+
+div.innerHTML =
+
+'<div class="job-title">'
++
+job.customer
++
+'</div>'
++
+'<div class="job-info">'
++
+job.date
++
+' · '
++
+Number(job.hours).toFixed(2)
++
+' Std. · '
++
+Number(job.total).toFixed(2)
++
+' €'
++
+'</div>';
+
+list.appendChild(div);
+
+});
+
+if(jobs.length === 0){
+
+list.innerHTML =
+'<div class="job"><div class="job-title">Noch keine Aufträge</div><div class="job-info">Deine gespeicherten Aufträge erscheinen hier.</div></div>';
+
+}
+
+document.getElementById("revenue").textContent =
+revenue.toFixed(2) + " €";
+
+document.getElementById("hours").textContent =
+hours.toFixed(1) + " Std.";
+
+document.getElementById("jobCount").textContent =
+jobs.length;
+
+}
+
+
+document
+.getElementById("analyseButton")
+.onclick =
+analyseText;
+
+document
+.getElementById("saveButton")
+.onclick =
+saveJob;
+
+renderJobs();
+
+</script>
 
 </body>
 </html>
