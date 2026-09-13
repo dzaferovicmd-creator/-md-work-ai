@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD Work AI</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: #0b0d12;
+  color: white;
+}
+
+.app {
+  max-width: 500px;
+  margin: auto;
+  padding: 22px 18px 100px;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: #4c8dff;
+}
+
+.subtitle {
+  color: #999;
+  margin-top: 5px;
+}
+
+.welcome {
+  margin-top: 30px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.ai {
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 24px;
+  text-align: center;
+  background: linear-gradient(135deg,#17233c,#10141d);
+  border: 1px solid #2d4e88;
+}
+
+.mic {
+  width: 85px;
+  height: 85px;
+  margin: 15px auto;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  background: #3478f6;
+  box-shadow: 0 0 30px #3478f655;
+}
+
+.ai-title {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.ai-text {
+  color: #aaa;
+  margin-top: 7px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.card {
+  background: #151820;
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.number {
+  font-size: 24px;
+  font-weight: 800;
+  margin-top: 7px;
+}
+
+.label {
+  color: #999;
+  font-size: 13px;
+}
+
+.title {
+  margin-top: 30px;
+  margin-bottom: 12px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.action {
+  border: 0;
+  color: white;
+  background: #151820;
+  border-radius: 18px;
+  padding: 20px 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.icon {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.job {
+  background: #151820;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.jobtop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customer {
+  font-weight: 700;
+}
+
+.time {
+  color: #999;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.status {
+  color: #55d98a;
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  background: #11141a;
+  border-top: 1px solid #252934;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  padding: 9px 4px 20px;
+}
+
+.nav div {
+  text-align: center;
+  color: #888;
+  font-size: 11px;
+}
+
+.nav span {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 4px;
+}
+
+.active {
+  color: #4c8dff !important;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="logo">MD WORK <span>AI</span></div>
+<div class="subtitle">Du arbeitest. Die KI macht dein Büro.</div>
+
+<div class="welcome">Hallo Marjan 👋</div>
+
+<div class="ai">
+
+<div class="ai-title">Was hast du heute gemacht?</div>
+
+<div class="mic">🎙️</div>
+
+<div class="ai-text">
+Tippe auf das Mikrofon und erzähle MD Work AI von deiner Arbeit.
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="card">
+<div class="label">UMSATZ HEUTE</div>
+<div class="number">0 €</div>
+</div>
+
+<div class="card">
+<div class="label">ARBEITSZEIT</div>
+<div class="number">0 Std.</div>
+</div>
+
+<div class="card">
+<div class="label">AUFTRÄGE</div>
+<div class="number">0</div>
+</div>
+
+<div class="card">
+<div class="label">OFFENE RECHNUNGEN</div>
+<div class="number">0 €</div>
+</div>
+
+</div>
+
+<div class="title">Schnellzugriff</div>
+
+<div class="actions">
+
+<button class="action">
+<span class="icon">➕</span>
+Neuer Auftrag
+</button>
+
+<button class="action">
+<span class="icon">👥</span>
+Kunden
+</button>
+
+<button class="action">
+<span class="icon">📋</span>
+Aufträge
+</button>
+
+<button class="action">
+<span class="icon">🧾</span>
+Rechnung
+</button>
+
+</div>
+
+<div class="title">Heute</div>
+
+<div class="job">
+
+<div class="jobtop">
+<div class="customer">Noch keine Aufträge</div>
+<div class="status">●</div>
+</div>
+
+<div class="time">
+Deine heutigen Aufträge erscheinen hier.
+</div>
+
+</div>
+
+</div>
+
+<div class="nav">
+
+<div class="active">
+<span>🏠</span>
+Home
+</div>
+
+<div>
+<span>📋</span>
+Aufträge
+</div>
+
+<div>
+<span>🤖</span>
+AI
+</div>
+
+<div>
+<span>👤</span>
+Profil
+</div>
+
+</div>
+
+</body>
+</html>
