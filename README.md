@@ -1,2 +1,2 @@
-# -md-work-ai
+# md-work-ai
 KI Arbeitsassistent für Selbstständige und Betriebe
